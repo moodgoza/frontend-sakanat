@@ -1,0 +1,27 @@
+.login {
+    display: flex;
+    flex-direction: column;
+    gap: 3rem;
+    margin-inline: auto;
+    width: 40%;
+    border: 0.125rem solid #ce99ce34;
+    border-radius: 2px;
+    padding-bottom: 3rem;
+    align-items: center;
+    margin-top: 4rem;
+    box-shadow: rgba(0, 0, 0, 0.1) 0px 20px 25px -5px, rgba(0, 0, 0, 0.04) 0px 10px 10px -5px;
+}
+
+.login-head{
+    background-color: #AA96DA;
+    width: 100%;
+    padding: 1rem;
+    color: white;
+    font-size: large;
+    display: flex;
+    justify-content: center;
+}
+
+.section{
+    width: 70%;
+}

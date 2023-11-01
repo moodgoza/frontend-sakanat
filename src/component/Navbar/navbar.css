@@ -1,0 +1,24 @@
+.container {
+    padding-block: 1rem;
+    display: flex;
+    gap: 3%;
+    justify-content: flex-start;
+    padding-inline-start: 2rem;
+    background-color: #AA96DA;
+}
+
+.container a{
+    text-decoration-line: none;
+    color: #FFFFD2;
+}
+
+
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.logo h4 {
+    margin: 0;
+}
