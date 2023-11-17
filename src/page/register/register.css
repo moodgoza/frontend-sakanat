@@ -1,13 +1,15 @@
-.card {
+.register-card {
     display: flex;
     flex-direction: column;
-    gap: 3rem;
+    gap: 1rem;
     margin-inline: auto;
     width: 60%;
+    height: max-content;
     border: 0.125rem solid #ce99ce34;
     border-radius: 2px;
     align-items: center;
     margin-top: 4rem;
+    padding-bottom: 3rem;
     box-shadow: rgba(0, 0, 0, 0.1) 0px 20px 25px -5px, rgba(0, 0, 0, 0.04) 0px 10px 10px -5px;
 }
 
@@ -55,7 +57,6 @@ h3{
 }
 
 .register-head{
-    background-color: #AA96DA;
     width: 100%;
     padding: 1rem;
     color: white;
@@ -63,3 +64,33 @@ h3{
     display: flex;
     justify-content: center;
 }
+
+div label{
+    right: 0;
+}
+
+.section1 input[type='text'],  .section1 input[type='password']{
+    background-color: rgba(255, 255, 255, 0);
+   border-top: 1px;
+   border-right: 1px;
+   border-left: 1px;
+    padding: 8px;
+    margin-bottom: 1rem;
+    font-size: 1.125rem;
+    color: white;
+    outline: 0;
+    /* Other styling properties */
+  }
+
+  .section2 input[type='text'],  .section2 input[type='password']{
+    background-color: rgba(255, 255, 255, 0);
+   border-top: 1px;
+   border-right: 1px;
+   border-left: 1px;
+    padding: 8px;
+    margin-bottom: 1rem;
+    font-size: 1.125rem;
+    color: white;
+    outline: 0;
+    /* Other styling properties */
+  }

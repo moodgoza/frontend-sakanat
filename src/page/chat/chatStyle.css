@@ -60,23 +60,31 @@
 
 .masseger {
     display: flex;
-    gap: 0.125rem;
+    gap: 0.5rem;
     margin-right: auto;
     width: 50%;
     flex-direction: row-reverse;
+    padding: 1rem;
 }
 
 .masseger p , .receiver p{
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
     background-color: #AA96DA;
     color: white;
     border-radius: 6px;
-    padding: 0.25rem;
+    padding: 1rem;
 }
+
+.masseger p {
+    background-color: #a09e9e;
+}
+
 
 .receiver {
     display: flex;
-    gap: 0.125rem;
+    gap: 0.5rem;
     width: 50%;
+    padding: 1rem;
 }
 
 .chat-send {
@@ -100,6 +108,15 @@
     flex-direction: column-reverse;
 }
 
+button {
+    background-color: #72658d;
+}
+
+button:hover {
+    background-color: #f7f7f7;
+    color: #72658d;
+    border: 1px solid #72658d;
+}
 .chatlist-container {
     width: 40%;
     border: 0.125rem solid #ce99ce34;

@@ -10,12 +10,16 @@ import {
   Link,
   createRoutesFromElements,
 } from "react-router-dom";
-
+import 'bootstrap/dist/css/bootstrap.min.css';  
 import Login from "./page/login/Login"
 import MainPage from './page/mainPage/MainPage';
 import Navbar from './component/Navbar/Navbar';
 import Register from './page/register/Register';
 import Chat from './page/chat/Chat';
+
+import { Provider } from "react-redux";
+import {store} from "./store";
+import Items from './page/item/Items';
 const root = ReactDOM.createRoot(document.getElementById('root'));
 
 const router = createBrowserRouter([
@@ -34,12 +38,18 @@ const router = createBrowserRouter([
   {
     path: "/chat",
     element: <Chat />,
+  },
+  {
+    path: "/item",
+    element: <Items />,
   }
 ]);
 root.render(
   <React.StrictMode>
+    <Provider store={store}>
     <Navbar/>
     <RouterProvider router={router} />
+    </Provider>
   </React.StrictMode>
 );
 

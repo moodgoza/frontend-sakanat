@@ -1,50 +1,121 @@
-import React, { useState } from 'react'
-import { TextField } from '@mui/material'
-import "./register.css"
+import React, { useEffect, useState } from "react";
+import { TextField } from "@mui/material";
+import "./register.css";
+import { register } from "../../feature/user/userSlice";
+import { reset } from "../../feature/user/userSlice";
+import { useDispatch, useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
+import { MuiFileInput } from "mui-file-input";
+import styled from "@emotion/styled";
+import axios from "axios";
 const Register = () => {
-
+  const navigate = useNavigate();
+  const [file, setFile] = useState('')
   const [information, setInformation] = useState({
     firstName: "",
     lastName: "",
     city: "",
     password: "",
     confirmPassword: "",
-    email: ""
+    email: "",
   });
-  const onSubmit = () => {
-    console.log("sdadsa")
-    //send them to server
-  }
+
+  let { isLoading, isSuccess, isError, message, user } = useSelector(
+    (state) => state.user
+  );
+  const dispatch = useDispatch();
+
+  const onSubmit = async () => {
+    const formData = new FormData();
+    formData.append("file", file);
+    formData.append('upload_preset', 'l0moj8hc')
+    const d1 = await axios.post('https://api.cloudinary.com/v1_1/dim6g5ogz/image/upload', formData);
+    const {public_id} = d1.data
+    const data = await dispatch(register({...information, imagePublicId: public_id}));
+    console.log(data);
+  };
 
   const onInformationChange = (e) => {
-    setInformation((prevState) => ( {...prevState, [e.target.name] : e.target.value}));
+    setInformation((prevState) => ({
+      ...prevState,
+      [e.target.name]: e.target.value,
+    }));
     console.log(information);
+  };
+
+  const onFileChange = (e) => {
+    setFile(e.target.files[0]);
   }
+ 
+  useEffect(() => {
+    if (isError) {
+      toast.error(message);
+    }
+    else if (isSuccess || user) {
+      navigate("/");
+    }
+  })
   return (
-    <div className='card'>
-      <div className='register-head'>
-      <h3>التسجيل بالموقع</h3>
+    <div>
+     <img src='/mainbg.jpg' className='mainbg'/>
+    <div className='overlayBlur'>
+    <div className="register-card">
+      <div className="register-head">
+        <h3>التسجيل بالموقع</h3>
       </div>
-     <div className='cont'>
-     <div className='section1'>
-      <TextField onChange={onInformationChange} className='inp' name="fisrtName" label="الاسم الاول" variant="standard" />
-      <TextField onChange={onInformationChange} className='inp' name="email"  label="الايميل" variant="standard" />
-      <TextField onChange={onInformationChange} type='password' className='inp' name="password"  label="كلمة السر" variant="standard" />
+      <div className="cont">
+        <div className="section1">
+          <input
+          type='text'
+            onChange={onInformationChange}
+            name="firstName"
+            placeholder="الاسم الاول"
+          />
+          <input
+           type='text'
+            onChange={onInformationChange}
+            name="email"
+            placeholder="الايميل"
+          />
+          <input
+            onChange={onInformationChange}
+            type="password"
+            name="password"
+            placeholder="كلمة السر"
+          />
+        </div>
+
+        <div className="section2">
+          <input
+           type='text'
+            onChange={onInformationChange}
+            name="lastName"
+            placeholder="اسم العائلة"
+          />
+          <input
+           type='text'
+            onChange={onInformationChange}
+            name="city"
+            placeholder="البلد"
+          />
+          <input
+            onChange={onInformationChange}
+            type="password"
+            name="confirmPassword"
+            placeholder="تاكيد كلمة السر"
+          />
+        </div>
 
       </div>
-
-      <div className='section2'>
-      <TextField onChange={onInformationChange} className='inp' name="lastName" label="اسم العائلة" variant="standard" />
-      <TextField onChange={onInformationChange} className='inp' name="city"  label="البلد" variant="standard" />
-      <TextField onChange={onInformationChange} type='password' className='inp' name="confirmPassword"  label="تاكيد كلمة السر" variant="standard" />
+      <div className="section3">
+      <input type="file" onChange={onFileChange}/>
       </div>
-     </div>
-     <button onClick={onSubmit}>
-        تسجيل
-      </button>
-     
+      <button onClick={onSubmit}>تسجيل</button>
     </div>
-  )
-}
+    </div>
+    </div>
+  );
+};
 
-export default Register
+export default Register;

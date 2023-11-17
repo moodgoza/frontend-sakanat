@@ -1,7 +1,26 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { Search } from '@mui/icons-material'
 import SingleChat from './SingleChat'
-const ChatsList = () => {
+import { useDispatch, useSelector } from 'react-redux'
+import { getChats } from '../../feature/chat/chatSlice'
+import { CircularProgress } from '@mui/material'
+const ChatsList = ({socket}) => {
+  const {chats, isLoading} = useSelector(state => state.chat);
+  const {user} = useSelector(state => state.user)
+  const dispatch = useDispatch();
+  
+  useEffect(() => {
+    const featchedData = async() => {
+      const data = await dispatch(getChats(user._id));
+    return data;
+    }
+  
+    featchedData()
+    .then(data => console.log(chats))
+  }, [])
+
+  
+ //console.log(chats)
   return (
     <div className='chatlist-container'>
         <div className='chatlist-head'>
@@ -10,23 +29,12 @@ const ChatsList = () => {
                 
         </div>
         <div className='chatlist-body'>
-            <SingleChat/>
-            <hr/>
-            <SingleChat/>
-            <hr/>
-            <SingleChat/>
-            <hr/>
-            <SingleChat/>
-            <hr/>
-
-            <SingleChat/>
-            <hr/>
-            <SingleChat/>
-            <hr/>
-            <SingleChat/>
-            <hr/>
-            <SingleChat/>
-            <hr/>
+            {chats && chats.map(c => {
+              return <>
+              <SingleChat socket={socket} chat={c} />
+            <hr/></>
+            })}
+            
         </div>
     </div>
   )
