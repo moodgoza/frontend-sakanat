@@ -5,9 +5,19 @@ import TimeAgo from "javascript-time-ago";
 import en from "javascript-time-ago/locale/en.json";
 import ru from "javascript-time-ago/locale/ru.json";
 import "./item.css";
+import { useDispatch, useSelector } from "react-redux";
+import itemService from "../../feature/item/itemService";
+import {getItem} from '../../feature/item/itemSlice'
+import { Navigate, useNavigate } from 'react-router-dom';
 const Item = ({ item }) => {
   TimeAgo.addDefaultLocale(en);
   TimeAgo.addLocale(ru);
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
+  const onDetailsHandler = async(e) => {
+   
+    navigate(`/item/${item._id}`);
+  }
   return (
     <div className="item-card">
       <div className="item-card-header">
@@ -43,7 +53,7 @@ const Item = ({ item }) => {
       </div>
       <hr/>
       <div className="item-card-footer">
-        <button>التفاصيل</button>
+        <button onClick={onDetailsHandler}>التفاصيل</button>
       </div>
     </div>
   );

@@ -5,8 +5,9 @@ import { createItem } from "../../feature/item/itemSlice";
 import axios from "axios";
 import "./item.css";
 import { Form } from "react-bootstrap";
-const CreateItemForm = () => {
-  const [seen, setSeen] = useState(false);
+import Modal from '@mui/material/Modal';
+const CreateItemForm = ({state}) => {
+  const [seen, setSeen] = useState(state);
   const [information, setInformation] = useState({
     price: 0,
     type: "",
@@ -14,6 +15,7 @@ const CreateItemForm = () => {
     region: "",
     images: [],
     mainImage: "",
+    description: "",
   });
 
   const { user } = useSelector((state) => state.user);
@@ -60,11 +62,15 @@ const CreateItemForm = () => {
     console.log(data);
   };
 
+  const onCloseHandler = (e) => {
+    setSeen(false);
+  }
+
   return (
     <>
       <button onClick={() => setSeen(!seen)}>اضافة سكن</button>
-      <div className={`${seen ? "seen" : "backContainer" } `}>
-        <div className={`createItemContainer`}>
+      <Modal open={seen} className="model">
+      
           <form className="createItemForm" onSubmit={onSubmitHnadler}>
             <div className="itemHeader">
               <h3>اضافة سكن جديد</h3>
@@ -81,6 +87,11 @@ const CreateItemForm = () => {
             <Form.Group className="inputItem">
               <Form.Label>السعر</Form.Label>
               <Form.Control onChange={onChangeHandler} name="price" />
+            </Form.Group>
+
+            <Form.Group className="inputItem">
+              <Form.Label>التفاصيل</Form.Label>
+              <Form.Control as="textarea" rows={5} onChange={onChangeHandler} name="description" />
             </Form.Group>
 
             <Form.Select
@@ -109,10 +120,12 @@ const CreateItemForm = () => {
                 name="images"
               />
             </Form.Group>
+            <div className="create-form-footer">
             <button>اضافة </button>
+            <button onClick={onCloseHandler}>اغلاق </button>
+            </div>
           </form>
-        </div>
-      </div>
+      </Modal>
     </>
   );
 };

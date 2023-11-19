@@ -20,7 +20,14 @@ const getItems = async() => {
   return response.data;
 }
 
+const getItem = async(itemId, token) => {
+  const response = await axios.get(`/item/${itemId}`);
+  console.log(response.data);
+  return response.data;
+}
+
 export default {
   createItem,
-  getItems
+  getItems,
+  getItem
 };

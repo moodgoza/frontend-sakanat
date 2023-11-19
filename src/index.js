@@ -20,6 +20,7 @@ import Chat from './page/chat/Chat';
 import { Provider } from "react-redux";
 import {store} from "./store";
 import Items from './page/item/Items';
+import ItemDetails from './page/item/ItemDetails';
 const root = ReactDOM.createRoot(document.getElementById('root'));
 
 const router = createBrowserRouter([
@@ -42,6 +43,10 @@ const router = createBrowserRouter([
   {
     path: "/item",
     element: <Items />,
+  },
+  {
+    path: "/item/:itemId",
+    element: <ItemDetails />,
   }
 ]);
 root.render(

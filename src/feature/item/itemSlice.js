@@ -49,6 +49,21 @@ export const getItems = createAsyncThunk('item/getItems', async(thunkAPI) => {
   }
 })
 
+export const getItem = createAsyncThunk('item/getItem', async(itemId, thunkAPI) => {
+  try{
+    return await itemService.getItem(itemId, thunkAPI.getState().user.user.token);
+  }
+  catch (error) {
+    const message =
+    (error.response &&
+      error.response.data &&
+      error.response.data.message) ||
+    error.message ||
+    error.toString();
+  return thunkAPI.rejectWithValue(message);
+  }
+})
+
 const itemSlice = createSlice({
   name: "item",
   initialState,
@@ -63,8 +78,9 @@ const itemSlice = createSlice({
     },
   },
   extraReducers: (builder) => {
-    builder.addCase(createItem.fulfilled, (state) => {
+    builder.addCase(createItem.fulfilled, (state, action) => {
       state.isSuccess = true;
+      state.items.push(action.payload);
     })
     .addCase(getItems.pending, (state) => {
       state.isLoading = true;
@@ -73,7 +89,6 @@ const itemSlice = createSlice({
       state.isSuccess = true;
       state.isLoading = false;
       state.items = action.payload;
-      console.log(state.items)
     })
     .addCase(getItems.rejected, (state, action) => {
       state.isSuccess = false;
@@ -81,6 +96,21 @@ const itemSlice = createSlice({
       state.isLoading = false;
       state.message = action.payload
 
+    })
+    .addCase(getItem.pending, (state) => {
+      state.isLoading = true;
+    })
+    .addCase(getItem.fulfilled, (state, action) => {
+      state.isSuccess = true;
+      state.isLoading = false;
+      state.item = action.payload;
+      console.log(state.item)
+    })
+    .addCase(getItem.rejected, (state, action) => {
+      state.isSuccess = false;
+      state.isErrore = true;
+      state.isLoading = false;
+      state.message = action.payload
     })
   },
 });

@@ -1,0 +1,45 @@
+.gallary{
+  position: relative;
+  width: 40%;
+  height: 60%;
+}
+.gallary-img {
+    width: 100%;
+
+  border-radius: 0;
+  object-fit: cover;
+  background-repeat: no-repeat;
+  object-fit: cover;
+}
+
+.back {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    background-color: rgba(128, 128, 128, 0);
+    color: rgba(0, 0, 0, 0);
+    width: 10%;
+    justify-content: center;
+}
+
+.forword {
+    position: absolute;
+    top: 0;
+    right: 0;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    background-color: rgba(128, 128, 128, 0);
+    color: rgba(0, 0, 0, 0);
+    width: 10%;
+    justify-content: center;
+}
+
+.forword:hover, .back:hover {
+    background-color: rgba(128, 128, 128, 0.705);
+    color: rgb(0, 0, 0);
+    cursor: pointer;
+}
