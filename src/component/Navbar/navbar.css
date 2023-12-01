@@ -5,8 +5,9 @@
     justify-content: flex-start;
     padding-inline-start: 2rem;
     background-color: #AA96DA;
+    height: 6vh;
 }
-.hoto {
+.logged {
     position: fixed;
     z-index: 345;
     width: 100%;
@@ -33,6 +34,7 @@
 .profile-img {
     width: 30px;
     height: 30px;
+    cursor: pointer;
 }
 
 .logout {

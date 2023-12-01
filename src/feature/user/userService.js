@@ -22,8 +22,15 @@ const logout = async () => {
     localStorage.removeItem("user");
 };
 
+const getUser = async(userId) => {
+    const response = await axios.get(`/user/${userId}`);
+    console.log(response.data);
+    return response.data;
+}
+
 export default {
     register,
     logout,
-    login
+    login,
+    getUser
 }

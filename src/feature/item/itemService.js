@@ -26,8 +26,28 @@ const getItem = async(itemId, token) => {
   return response.data;
 }
 
+const getUserItem = async(userId, token) => {
+  const response = await axios.get(`/item/user/${userId}`);
+  console.log(response.data);
+  return response.data;
+}
+
+const updateItem = async(itemId, newItem) => {
+  console.log(itemId, newItem);
+  const response = await axios.put(`/item/${itemId}`, {newItem});
+  return response.data;
+}
+
+const deleteItem = async(itemId) => {
+  const response = await axios.delete(`/item/${itemId}`);
+  return response.data;
+}
+
 export default {
   createItem,
   getItems,
-  getItem
+  getItem,
+  getUserItem,
+  updateItem,
+  deleteItem
 };

@@ -1,0 +1,121 @@
+@import url(http://fonts.googleapis.com/earlyaccess/droidarabickufi.css);
+
+.profile-container{
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    height: 100%;
+    background-color: rgb(240, 237, 237)    ;
+}
+
+.profile-header {
+    display: flex;
+    flex-direction: row;
+    width: fit-content;
+    gap: 30px;
+}
+
+.profile-header span{
+    padding: 2rem;
+    padding-bottom: 1rem;
+    cursor: pointer;
+
+}
+
+.not-select {
+    border-bottom: 1px solid rgba(128, 128, 128, 0);  
+    
+    -webkit-transition : border 500ms ease-out;
+    -moz-transition : border 500ms ease-out;
+    -o-transition : border 500ms ease-out;
+    transition : border 500ms ease-out;
+}
+.select {
+    border-bottom: 1px solid rgba(128, 128, 128, 1); 
+}
+
+.profile-body {
+    padding: 2rem;
+   display: flex;
+   height: 100%;
+}
+
+.img-message {
+    width: 100%;
+}
+.user-img{
+    width: 100%;
+    border-radius: 0;
+}
+
+
+.messaging{
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+}
+.img-message{
+    display: flex;
+    flex-direction: column;
+    gap: 0.875rem;
+  
+}
+
+.personal-info{
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    height: 30%;
+    width: 30%;
+}
+.send-message-button {
+    width: 45%;
+}
+
+.send-message-button button{
+    width: 100%;
+}
+.info {
+    display: flex;
+    width: 100%;
+    align-items: center;
+    justify-content: space-between;
+    font-family: "Droid Arabic Kufi", serif;
+   
+
+}
+.info span {
+    font-size: x-large;
+  
+    font-weight: bolder;
+}
+
+.offer{
+    width: 50%;
+    height:100%;
+    display: flex;
+    flex-direction: column;
+    padding: 2rem;
+    gap: 2rem;
+}
+
+h1{
+    color: rgba(0, 0, 0, 0.671);
+}
+
+.profile-item-container{
+    display: flex;
+    width: 100%;
+    justify-content: space-around;
+    border: 0.5px solid rgb(225, 220, 220);
+    border-radius: 99999px;
+    padding: 0.5rem;
+    gap: 1rem;
+}
+
+.profile-item-container:hover{
+    background-color: rgb(225, 220, 220);
+    border: 0.5px solid black;
+    color: gray;
+    cursor: pointer;
+}

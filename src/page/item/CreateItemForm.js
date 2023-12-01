@@ -6,6 +6,7 @@ import axios from "axios";
 import "./item.css";
 import { Form } from "react-bootstrap";
 import Modal from '@mui/material/Modal';
+import AddIcon from '@mui/icons-material/Add';
 const CreateItemForm = ({state}) => {
   const [seen, setSeen] = useState(state);
   const [information, setInformation] = useState({
@@ -68,7 +69,7 @@ const CreateItemForm = ({state}) => {
 
   return (
     <>
-      <button onClick={() => setSeen(!seen)}>اضافة سكن</button>
+      <button onClick={() => setSeen(!seen)}><AddIcon/>اضافة سكن</button>
       <Modal open={seen} className="model">
       
           <form className="createItemForm" onSubmit={onSubmitHnadler}>

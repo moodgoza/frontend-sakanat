@@ -1,5 +1,5 @@
 import React from "react";
-import { Image } from "cloudinary-react";
+import { CloudinaryContext, Image, Transformation } from "cloudinary-react";
 import ReactTimeAgo from "react-time-ago";
 import TimeAgo from "javascript-time-ago";
 import en from "javascript-time-ago/locale/en.json";
@@ -7,17 +7,35 @@ import ru from "javascript-time-ago/locale/ru.json";
 import "./item.css";
 import { useDispatch, useSelector } from "react-redux";
 import itemService from "../../feature/item/itemService";
-import {getItem} from '../../feature/item/itemSlice'
-import { Navigate, useNavigate } from 'react-router-dom';
+import { getItem } from "../../feature/item/itemSlice";
+import { Navigate, useNavigate } from "react-router-dom";
+import { Cloudinary } from "@cloudinary/url-gen";
+import { fill } from "@cloudinary/url-gen/actions/resize";
+import { Effect } from "@cloudinary/url-gen/actions/effect";
+import { byRadius } from "@cloudinary/url-gen/actions/roundCorners";
+import { byAngle } from "@cloudinary/url-gen/actions/rotate";
+import { AdvancedImage, lazyload, placeholder, responsive } from "@cloudinary/react";
 const Item = ({ item }) => {
   TimeAgo.addDefaultLocale(en);
   TimeAgo.addLocale(ru);
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const onDetailsHandler = async(e) => {
-   
+  const onDetailsHandler = async (e) => {
     navigate(`/item/${item._id}`);
-  }
+  };
+
+  const cld = new Cloudinary({
+    cloud: {
+      cloudName: 'dim6g5ogz'
+    }
+  })
+
+  const myImage = cld.image(item.mainImage);
+  const image = 
+  myImage
+  
+
+
   return (
     <div className="item-card">
       <div className="item-card-header">
@@ -25,35 +43,36 @@ const Item = ({ item }) => {
           className="item-user-img"
           cloudName="dim6g5ogz"
           publicId={item.user.imagePublicId}
+          onClick={onDetailsHandler}
         />
-        <div className="date-name">
-          <span>محمود ابو عزة</span>
-          <small>
-          منذ ساعتين
-          </small>
+
+        <div className="date-name" >
+          <span onClick={onDetailsHandler}>محمود ابو عزة</span>
+          <small>منذ ساعتين</small>
         </div>
       </div>
-      <hr/>
+      <hr />
       <div className="item-card-body">
-        <Image
-          className="body-item-img"
-          cloudName="dim6g5ogz"
-          publicId={item.mainImage}
-        />
+       
+          
+      
+        <AdvancedImage  className="body-item-img" cldImg={image} />
         <div>
-        <div>
-          <span>المدينة: {item.city}</span>
-          <span>المنطقة: {item.region}</span>
-        </div>
-        <div>
-          <span>السعر: {item.price}</span>
-          <span>النوع: {item.type === "1" ? "شقة" : "بيت منفصل"}</span>
-        </div>
+          <div>
+            <span>المدينة: {item.city}</span>
+            <span>المنطقة: {item.region}</span>
+          </div>
+          <div>
+            <span>السعر: {item.price}</span>
+            <span>النوع: {item.type === "1" ? "شقة" : "بيت منفصل"}</span>
+          </div>
         </div>
       </div>
-      <hr/>
+      <hr />
       <div className="item-card-footer">
-        <button onClick={onDetailsHandler}>التفاصيل</button>
+        <button className="details-button" onClick={onDetailsHandler}>
+          التفاصيل
+        </button>
       </div>
     </div>
   );

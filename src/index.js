@@ -1,7 +1,7 @@
-import React from 'react';
-import ReactDOM from 'react-dom/client';
-import './index.css';
-import reportWebVitals from './reportWebVitals';
+import React from "react";
+import ReactDOM from "react-dom/client";
+import "./index.css";
+import reportWebVitals from "./reportWebVitals";
 import { createRoot } from "react-dom/client";
 import {
   createBrowserRouter,
@@ -10,18 +10,19 @@ import {
   Link,
   createRoutesFromElements,
 } from "react-router-dom";
-import 'bootstrap/dist/css/bootstrap.min.css';  
-import Login from "./page/login/Login"
-import MainPage from './page/mainPage/MainPage';
-import Navbar from './component/Navbar/Navbar';
-import Register from './page/register/Register';
-import Chat from './page/chat/Chat';
+import "bootstrap/dist/css/bootstrap.min.css";
+import Login from "./page/login/Login";
+import MainPage from "./page/mainPage/MainPage";
+import Navbar from "./component/Navbar/Navbar";
+import Register from "./page/register/Register";
+import Chat from "./page/chat/Chat";
 
 import { Provider } from "react-redux";
-import {store} from "./store";
-import Items from './page/item/Items';
-import ItemDetails from './page/item/ItemDetails';
-const root = ReactDOM.createRoot(document.getElementById('root'));
+import { store } from "./store";
+import Items from "./page/item/Items";
+import ItemDetails from "./page/item/ItemDetails";
+import Profile from "./page/profile/Profile";
+const root = ReactDOM.createRoot(document.getElementById("root"));
 
 const router = createBrowserRouter([
   {
@@ -47,13 +48,17 @@ const router = createBrowserRouter([
   {
     path: "/item/:itemId",
     element: <ItemDetails />,
-  }
+  },
+  {
+    path: "/profile/:userId",
+    element: <Profile />,
+  },
 ]);
 root.render(
   <React.StrictMode>
     <Provider store={store}>
-    <Navbar/>
-    <RouterProvider router={router} />
+      <Navbar />
+      <RouterProvider router={router} />
     </Provider>
   </React.StrictMode>
 );
