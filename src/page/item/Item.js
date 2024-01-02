@@ -16,10 +16,15 @@ import { byRadius } from "@cloudinary/url-gen/actions/roundCorners";
 import { byAngle } from "@cloudinary/url-gen/actions/rotate";
 import { AdvancedImage, lazyload, placeholder, responsive } from "@cloudinary/react";
 const Item = ({ item }) => {
+  const {user} = useSelector(state => state.user);
   TimeAgo.addDefaultLocale(en);
   TimeAgo.addLocale(ru);
   const navigate = useNavigate();
   const dispatch = useDispatch();
+  if(!user)
+  {
+    navigate('/')
+  }
   const onDetailsHandler = async (e) => {
     navigate(`/item/${item._id}`);
   };
@@ -43,7 +48,7 @@ const Item = ({ item }) => {
           className="item-user-img"
           cloudName="dim6g5ogz"
           publicId={item.user.imagePublicId}
-          onClick={onDetailsHandler}
+          onClick={() => {navigate(`/profile/${item.user._id}`);}}
         />
 
         <div className="date-name" >

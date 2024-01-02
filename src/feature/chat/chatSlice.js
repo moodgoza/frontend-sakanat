@@ -12,11 +12,11 @@ const initialState = {
 
 export const createChat = createAsyncThunk(
   "chat/createChat",
-  async (firstUser, secondUser, thunkAPI) => {
+  async (data, thunkAPI) => {
     try {
       return await chatService.createChat(
-        firstUser,
-        secondUser,
+        data.firstUser,
+        data.secondUser,
         thunkAPI.getState().user.user.token
       );
     } catch (error) {

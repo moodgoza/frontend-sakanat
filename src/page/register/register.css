@@ -80,6 +80,7 @@ div label{
     color: white;
     outline: 0;
     /* Other styling properties */
+    cursor: pointer;
   }
 
   .section2 input[type='text'],  .section2 input[type='password']{
@@ -93,4 +94,17 @@ div label{
     color: white;
     outline: 0;
     /* Other styling properties */
+  }
+
+  input[type='file'] {
+    font-family: calibri;
+   
+    padding: 10px;
+    
+    
+    border-bottom: 1px solid #BBB;
+    text-align: center;
+    color: gray;
+    background-color: rgba(255, 255, 255, 0);
+    cursor: pointer;
   }

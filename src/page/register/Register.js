@@ -11,7 +11,7 @@ import styled from "@emotion/styled";
 import axios from "axios";
 const Register = () => {
   const navigate = useNavigate();
-  const [file, setFile] = useState('')
+  const [file, setFile] = useState("");
   const [information, setInformation] = useState({
     firstName: "",
     lastName: "",
@@ -29,10 +29,15 @@ const Register = () => {
   const onSubmit = async () => {
     const formData = new FormData();
     formData.append("file", file);
-    formData.append('upload_preset', 'l0moj8hc')
-    const d1 = await axios.post('https://api.cloudinary.com/v1_1/dim6g5ogz/image/upload', formData);
-    const {public_id} = d1.data
-    const data = await dispatch(register({...information, imagePublicId: public_id}));
+    formData.append("upload_preset", "l0moj8hc");
+    const d1 = await axios.post(
+      "https://api.cloudinary.com/v1_1/dim6g5ogz/image/upload",
+      formData
+    );
+    const { public_id } = d1.data;
+    const data = await dispatch(
+      register({ ...information, imagePublicId: public_id })
+    );
     console.log(data);
   };
 
@@ -46,74 +51,81 @@ const Register = () => {
 
   const onFileChange = (e) => {
     setFile(e.target.files[0]);
-  }
- 
+  };
+
   useEffect(() => {
     if (isError) {
       toast.error(message);
-    }
-    else if (isSuccess || user) {
+    } else if (isSuccess || user) {
       navigate("/");
     }
-  })
+  });
   return (
     <div>
-     <img src='/mainbg.jpg' className='mainbg'/>
-    <div className='overlayBlur'>
-    <div className="register-card">
-      <div className="register-head">
-        <h3>التسجيل بالموقع</h3>
-      </div>
-      <div className="cont">
-        <div className="section1">
-          <input
-          type='text'
-            onChange={onInformationChange}
-            name="firstName"
-            placeholder="الاسم الاول"
-          />
-          <input
-           type='text'
-            onChange={onInformationChange}
-            name="email"
-            placeholder="الايميل"
-          />
-          <input
-            onChange={onInformationChange}
-            type="password"
-            name="password"
-            placeholder="كلمة السر"
-          />
-        </div>
+      <img src="/mainbg.jpg" className="mainbg" />
+      <div className="overlayBlur">
+        <div className="register-card">
+          <div className="register-head">
+            <h3>التسجيل بالموقع</h3>
+          </div>
+          <div className="cont">
+            <div className="section1">
+              <input
+                type="text"
+                onChange={onInformationChange}
+                name="firstName"
+                placeholder="الاسم الاول"
+              />
+              <input
+                type="text"
+                onChange={onInformationChange}
+                name="email"
+                placeholder="الايميل"
+              />
+              <input
+                onChange={onInformationChange}
+                type="password"
+                name="password"
+                placeholder="كلمة السر"
+              />
+              
+              
+              <input type="file" size="60" onChange={onFileChange} />
+                
+             
+            </div>
 
-        <div className="section2">
-          <input
-           type='text'
-            onChange={onInformationChange}
-            name="lastName"
-            placeholder="اسم العائلة"
-          />
-          <input
-           type='text'
-            onChange={onInformationChange}
-            name="city"
-            placeholder="البلد"
-          />
-          <input
-            onChange={onInformationChange}
-            type="password"
-            name="confirmPassword"
-            placeholder="تاكيد كلمة السر"
-          />
-        </div>
+            <div className="section2">
+              <input
+                type="text"
+                onChange={onInformationChange}
+                name="lastName"
+                placeholder="اسم العائلة"
+              />
+              <input
+                type="text"
+                onChange={onInformationChange}
+                name="city"
+                placeholder="البلد"
+              />
+              <input
+                onChange={onInformationChange}
+                type="password"
+                name="confirmPassword"
+                placeholder="تاكيد كلمة السر"
+              />
+              <input
+                onChange={onInformationChange}
+                type="password"
+                name="confirmPassword"
+                placeholder="رقم الهاتف"
+              />
+            </div>
+          </div>
 
+          <button onClick={onSubmit}>تسجيل</button>
+        </div>
       </div>
-      <div className="section3">
-      <input type="file" onChange={onFileChange}/>
-      </div>
-      <button onClick={onSubmit}>تسجيل</button>
-    </div>
-    </div>
     </div>
   );
 };

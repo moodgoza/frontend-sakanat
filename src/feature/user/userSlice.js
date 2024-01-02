@@ -76,6 +76,7 @@ export const userSlice = createSlice({
   initialState,
   reducers: {
     reset: (state) => {
+      state.user = null
       state.isLoading = false;
       state.isError = false;
       state.isSuccess = false;

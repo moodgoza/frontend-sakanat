@@ -61,6 +61,7 @@ const CreateItemForm = ({state}) => {
     console.log(information);
     const data = dispatch(createItem({ item: information, userId: user._id }));
     console.log(data);
+    window.location.reload();
   };
 
   const onCloseHandler = (e) => {

@@ -18,7 +18,7 @@ const ChatContent = ({ socket }) => {
   const roomName =
     chat &&
     (chat.firstUser.userName > chat.secondUser.userName
-      ? chat.firstUser.userName + chat.secondtUser.userName
+      ? chat.firstUser.userName + chat.secondUser.userName
       : chat.secondUser.userName + chat.firstUser.userName);
 
   useEffect(() => {

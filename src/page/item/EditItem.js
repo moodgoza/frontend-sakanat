@@ -42,7 +42,7 @@ const EditItem = ({ item }) => {
   };
 
   const onSubmitHnadler = async (e) => {
-    e.preventDefault();
+   
     console.log(information);
     let d1 = null;
     if (information.mainImage) {
@@ -87,6 +87,7 @@ const EditItem = ({ item }) => {
   return (
     <>
       <ModeEditIcon className="icon-details" onClick={() => setSeen(!seen)} />
+      
       <Modal open={seen} className="model">
         <form className="createItemForm" onSubmit={onSubmitHnadler}>
           <div className="itemHeader">

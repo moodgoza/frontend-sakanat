@@ -4,6 +4,8 @@ import { getChatMessages } from '../../feature/chat/messageSlice';
 import { getChat } from '../../feature/chat/chatSlice';
 
 const SingleChat = ({chat, socket}) => {
+
+  console.log(chat.newChat)
   const {user} = useSelector(state => state.user)
   const dispatch = useDispatch();
   const onClickHandler = async(e) => {
@@ -11,7 +13,7 @@ const SingleChat = ({chat, socket}) => {
     const data = await dispatch(getChatMessages(e.target.id));
     const roomName =
     chat.firstUser.userName > chat.secondUser.userName
-      ? chat.firstUser.userName + chat.secondtUser.userName
+      ? chat.firstUser.userName + chat.secondUser.userName
       : chat.secondUser.userName + chat.firstUser.userName;
       console.log(roomName)
     dispatch(getChat(chat));  
@@ -21,8 +23,8 @@ const SingleChat = ({chat, socket}) => {
     <div className='singlechat' onClick={onClickHandler} id={chat._id}>
         <img src='/profile.jpg'/>
         <div className='singlechat-content'>
-            <h3>{chat.secondUser._id !== user._id ? chat.secondUser.firstName + ' ' + chat.secondUser.lastName : 
-            chat.firstUser.firstName + ' ' + chat.firstUser.lastName}</h3>
+            <h3>{chat && (chat.secondUser._id !== user._id ? chat.secondUser.firstName + ' ' + chat.secondUser.lastName : 
+            chat.firstUser.firstName + ' ' + chat.firstUser.lastName)}</h3>
         </div>
         
     </div>

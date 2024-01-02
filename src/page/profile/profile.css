@@ -119,3 +119,29 @@ h1{
     color: gray;
     cursor: pointer;
 }
+
+.inputMessage{
+width: 50%;
+
+}
+
+.MuiModal-root{
+    display: flex;
+    justify-content: center;
+    margin-top: 2rem;
+}
+
+.modal-profile-cntainer{
+    width: 20%;
+    min-width: fit-content;
+    height: 40%;
+    min-height: fit-content;
+    background-color: white;
+    padding-block:2rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    gap: 2rem;
+   
+}

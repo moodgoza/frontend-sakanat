@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import userService from "../../feature/user/userService";
 import { getUser } from "../../feature/user/userSlice";
 import "./profile.css";
@@ -10,11 +10,19 @@ import MessageIcon from "@mui/icons-material/Message";
 import WhatsAppIcon from "@mui/icons-material/WhatsApp";
 import itemService from "../../feature/item/itemService";
 import ProfileItem from "./ProfileItem";
+import Contact from "./Contact";
 const Profile = () => {
   const { userId } = useParams();
   const dispatch = useDispatch();
   const [items, setItems] = useState([]);
   const { profileUser } = useSelector((state) => state.user);
+  const {user} = useSelector(state => state.user);
+  const navigate = useNavigate();
+  console.log(profileUser)
+  if(!user)
+  {
+    navigate('/')
+  }
   useEffect(() => {
     dispatch(getUser(userId));
     const getui = async() => {
@@ -60,9 +68,9 @@ const Profile = () => {
                 />
 
                 <div className="messaging">
-                  <button className="send-message-button">
-                    <MessageIcon /> تواصل
-                  </button>
+                  
+                    <Contact /> 
+                  
                   <a
                     className="send-message-button"
                     target="blanck"

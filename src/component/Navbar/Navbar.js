@@ -3,7 +3,7 @@ import "./navbar.css";
 import { ImOffice } from "react-icons/im";
 import { Link, NavLink, Navigate, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { logout } from "../../feature/user/userSlice";
+import { logout, reset } from "../../feature/user/userSlice";
 import { Image } from "cloudinary-react";
 import HomeWorkIcon from '@mui/icons-material/HomeWork';
 import MailOutlineIcon from '@mui/icons-material/MailOutline';
@@ -18,6 +18,7 @@ const Navbar = () => {
   );
   const dispatch = useDispatch();
   const logoutHandler = async(e) => {
+    reset();
     await dispatch(logout())
   }
   console.log(user);

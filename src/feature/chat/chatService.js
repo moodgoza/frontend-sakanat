@@ -1,9 +1,12 @@
 import axios from "axios";
 
 const createChat = async (firstUser, secondUser, token) => {
-  const response = await axios.post(`/chat/${firstUser}/${secondUser}`, {
-    headers: {
-      Authorization: `Bearer ${token}`,
+  console.log(token);
+  const response = await axios.post(`/chat/${firstUser}/${secondUser}`,{}, {
+   
+      headers: {
+        Authorization: `Bearer ${token}`,
+    
     },
   });
   return response.data;
@@ -23,12 +26,14 @@ const createMessage = async (chat, sender, receiver, value, token) => {
   const response = await axios.post(
     `/chat/message/${chat}/${sender}/${receiver}`,
     {
-      value
-    }
-     
-    , {headers: {
+      value,
+    },
+
+    {
+      headers: {
         Authorization: `Bearer ${token}`,
-      },}
+      },
+    }
   );
   return response.data;
 };

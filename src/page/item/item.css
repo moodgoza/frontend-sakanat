@@ -106,9 +106,7 @@
 .body-item-img {
   width: 100%;
   border-radius: 0;
- 
-  object-fit: cover;
-  background-repeat: no-repeat;
+  height: 450px;
   
 }
 
