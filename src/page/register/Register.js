@@ -19,6 +19,7 @@ const Register = () => {
     password: "",
     confirmPassword: "",
     email: "",
+    phoneNumber: ""
   });
 
   let { isLoading, isSuccess, isError, message, user } = useSelector(
@@ -35,6 +36,7 @@ const Register = () => {
       formData
     );
     const { public_id } = d1.data;
+    console.log({ ...information, imagePublicId: public_id })
     const data = await dispatch(
       register({ ...information, imagePublicId: public_id })
     );
@@ -117,7 +119,7 @@ const Register = () => {
               <input
                 onChange={onInformationChange}
                 type="password"
-                name="confirmPassword"
+                name="phoneNumber"
                 placeholder="رقم الهاتف"
               />
             </div>
