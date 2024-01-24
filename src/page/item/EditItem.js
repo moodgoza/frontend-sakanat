@@ -42,8 +42,9 @@ const EditItem = ({ item }) => {
   };
 
   const onSubmitHnadler = async (e) => {
-   
+   e.preventDefault();
     console.log(information);
+    console.log(item.mainImage)
     let d1 = null;
     if (information.mainImage) {
       const formData = new FormData();
@@ -78,6 +79,7 @@ const EditItem = ({ item }) => {
     const data = itemService.updateItem(item._id, information);
 
     console.log(data);
+    window.location.reload();
   };
 
   const onCloseHandler = (e) => {

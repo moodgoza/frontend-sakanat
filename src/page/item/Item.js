@@ -52,7 +52,7 @@ const Item = ({ item }) => {
         />
 
         <div className="date-name" >
-          <span onClick={onDetailsHandler}>محمود ابو عزة</span>
+          <span onClick={onDetailsHandler}>{item.user.firstName + ' ' + item.user.lastName} </span>
           <small>منذ ساعتين</small>
         </div>
       </div>

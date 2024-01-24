@@ -41,6 +41,7 @@ const Register = () => {
       register({ ...information, imagePublicId: public_id })
     );
     console.log(data);
+    navigate("/");
   };
 
   const onInformationChange = (e) => {
@@ -49,6 +50,7 @@ const Register = () => {
       [e.target.name]: e.target.value,
     }));
     console.log(information);
+   
   };
 
   const onFileChange = (e) => {

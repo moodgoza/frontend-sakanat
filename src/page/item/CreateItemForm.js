@@ -11,7 +11,7 @@ const CreateItemForm = ({state}) => {
   const [seen, setSeen] = useState(state);
   const [information, setInformation] = useState({
     price: 0,
-    type: "",
+    type: "1",
     city: "",
     region: "",
     images: [],
