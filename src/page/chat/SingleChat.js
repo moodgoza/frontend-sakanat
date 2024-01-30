@@ -5,16 +5,16 @@ import { getChat } from '../../feature/chat/chatSlice';
 
 const SingleChat = ({chat, socket}) => {
 
-  console.log(chat.newChat)
+  console.log(chat)
   const {user} = useSelector(state => state.user)
   const dispatch = useDispatch();
   const onClickHandler = async(e) => {
     console.log(e.target.id)
-    const data = await dispatch(getChatMessages(e.target.id));
+    const data = await dispatch(getChatMessages(chat._id));
     const roomName =
-    chat.firstUser.userName > chat.secondUser.userName
-      ? chat.firstUser.userName + chat.secondUser.userName
-      : chat.secondUser.userName + chat.firstUser.userName;
+    chat.firstUser.email > chat.secondUser.email
+      ? chat.firstUser.email + chat.secondUser.email
+      : chat.secondUser.email + chat.firstUser.email;
       console.log(roomName)
     dispatch(getChat(chat));  
     socket.emit('join_room', roomName);  

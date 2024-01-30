@@ -50,8 +50,8 @@ const ItemDetails = () => {
             <h3 className="item-user-name" onClick={onDetailsHandler}>
               {item && item.item.user.firstName + " " + item.item.user.lastName}
             </h3>
-            <DeleteIcon onClick={onDeleteHandler} className="icon-details"/>
-            {item && <EditItem item={item.item} image={item.images}/>}
+            {item.item.user._id === user._id && <DeleteIcon onClick={onDeleteHandler} className="icon-details"/>}
+            {item.item.user._id === user._id && item && <EditItem item={item.item} image={item.images}/>}
             
           </div>
           <hr />

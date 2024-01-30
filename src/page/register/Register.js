@@ -5,13 +5,13 @@ import { register } from "../../feature/user/userSlice";
 import { reset } from "../../feature/user/userSlice";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { toast } from "react-toastify";
+import { ToastContainer, toast } from "react-toastify";
 import { MuiFileInput } from "mui-file-input";
 import styled from "@emotion/styled";
 import axios from "axios";
 const Register = () => {
   const navigate = useNavigate();
-  const [file, setFile] = useState("");
+  const [file, setFile] = useState(null);
   const [information, setInformation] = useState({
     firstName: "",
     lastName: "",
@@ -29,6 +29,20 @@ const Register = () => {
 
   const onSubmit = async () => {
     const formData = new FormData();
+    for(const key in information)
+    {
+      if(information[key] === "")
+      {
+        toast.error("املا جميع الفراغات لو سمحت");
+        return;
+      }    }
+
+      if(file === null)
+      {
+        toast.error("املا جميع الفراغات لو سمحت");
+        return;
+      }
+    
     formData.append("file", file);
     formData.append("upload_preset", "l0moj8hc");
     const d1 = await axios.post(
@@ -66,6 +80,7 @@ const Register = () => {
   });
   return (
     <div>
+      <ToastContainer/>
       <img src="/mainbg.jpg" className="mainbg" />
       <div className="overlayBlur">
         <div className="register-card">

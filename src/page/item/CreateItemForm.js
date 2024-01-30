@@ -7,6 +7,9 @@ import "./item.css";
 import { Form } from "react-bootstrap";
 import Modal from '@mui/material/Modal';
 import AddIcon from '@mui/icons-material/Add';
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import { image } from "@cloudinary/url-gen/qualifiers/source";
 const CreateItemForm = ({state}) => {
   const [seen, setSeen] = useState(state);
   const [information, setInformation] = useState({
@@ -37,6 +40,22 @@ const CreateItemForm = ({state}) => {
 
   const onSubmitHnadler = async (e) => {
     e.preventDefault();
+
+    if(information.price === 0 || 
+      information.city === "" ||
+      information.region === "" ||
+      information.mainImage === "" ||
+      information.description === "")
+      {
+        toast.error("املا جميع الفراغات لو سمحت");
+        return;
+      }
+
+      if(information.images.length === 0)
+      {
+        toast.error("اختر صورة اضافية واحدة على الاقل لو سمحت");
+        return;
+      }
     const formData = new FormData();
     formData.append("file", information.mainImage);
     formData.append("upload_preset", "l0moj8hc");
@@ -61,6 +80,8 @@ const CreateItemForm = ({state}) => {
     console.log(information);
     const data = dispatch(createItem({ item: information, userId: user._id }));
     console.log(data);
+
+    toast.success('تم اضافة العرض بنجاح')
     window.location.reload();
   };
 
@@ -74,6 +95,7 @@ const CreateItemForm = ({state}) => {
       <Modal open={seen} className="model">
       
           <form className="createItemForm" onSubmit={onSubmitHnadler}>
+            <ToastContainer/>
             <div className="itemHeader">
               <h3>اضافة سكن جديد</h3>
             </div>
@@ -127,7 +149,11 @@ const CreateItemForm = ({state}) => {
             <button onClick={onCloseHandler}>اغلاق </button>
             </div>
           </form>
+          
       </Modal>
+   
+
+
     </>
   );
 };

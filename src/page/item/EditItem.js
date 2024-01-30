@@ -9,6 +9,8 @@ import Modal from "@mui/material/Modal";
 import AddIcon from "@mui/icons-material/Add";
 import ModeEditIcon from "@mui/icons-material/ModeEdit";
 import itemService from "../../feature/item/itemService";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 const EditItem = ({ item }) => {
   console.log(item);
   const [seen, setSeen] = useState(false);
@@ -43,6 +45,14 @@ const EditItem = ({ item }) => {
 
   const onSubmitHnadler = async (e) => {
    e.preventDefault();
+   if(information.price === 0 || 
+    information.city === "" ||
+    information.region === "" ||
+    information.description === "")
+    {
+      toast.error("املا جميع الفراغات لو سمحت");
+      return;
+    }
     console.log(information);
     console.log(item.mainImage)
     let d1 = null;

@@ -38,6 +38,7 @@ export const createMessage = createAsyncThunk(
 export const getChatMessages = createAsyncThunk(
   "message/getChatMessages",
   async (chat, thunkAPI) => {
+    console.log(chat    )
     try {
       return await chatService.getChatMessages(
         chat,

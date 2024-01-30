@@ -65,8 +65,8 @@ const ChatContent = ({ socket }) => {
           <span>
             {chat &&
               (chat.firstUser._id !== user._id
-                ? chat.firstUser.userName
-                : chat.secondUser.userName)}
+                ? chat.firstUser.firstName
+                : chat.secondUser.firstName)}
           </span>
         </div>
         <hr />
