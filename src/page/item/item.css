@@ -123,14 +123,43 @@ small {
     width: 80%;
     border: 1px gray solid;
     border-radius: 9999px;
+    align-items: center;
     padding: 1rem;
     margin-top: 2rem;
+    display: flex;
+    justify-content: space-between;
+}
+
+.itemsfilter {
+  border-radius: 9999px;
+  border: 1px gray solid;
+  width: 40%;
+  display: flex;
+  align-items: center;
+  padding: 1rem;
+  justify-content: space-between;
+}
+
+.itemsHeader button {
+  max-height: fit-content;
+}
+
+.itemsfilter select {
+  border-radius: 9999px;
+  border: 1px gray solid;
+  width: 30%;
 }
 
 .items{
     display: flex;
     flex-direction: column;
     align-items: center;
+}
+
+.filterinput {
+  border-radius: 9999px;
+  border: 1px gray solid;
+  width: 65%;
 }
 
 .item-details {
