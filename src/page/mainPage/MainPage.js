@@ -4,7 +4,7 @@ const MainPage = () => {
   return (
     <div className='bg'>
       <img src='/mainbg.jpg' className='mainbg'/>
-      <div className='overlayBlur'><h2>-------------------</h2></div>
+      <div className='overlayBlur'><h2>أهلا وسهلا بكم في موقع سكنات</h2></div>
       
   </div>
   )

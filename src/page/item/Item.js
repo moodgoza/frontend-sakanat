@@ -34,7 +34,7 @@ const Item = ({ item }) => {
       cloudName: 'dim6g5ogz'
     }
   })
-
+  console.log(item)
   const myImage = cld.image(item.mainImage);
   const image = 
   myImage
@@ -52,7 +52,7 @@ const Item = ({ item }) => {
         />
 
         <div className="date-name" >
-          <span onClick={onDetailsHandler}>محمود ابو عزة</span>
+          <span onClick={onDetailsHandler}><div>{item.user.userName}</div></span>
           <small>منذ ساعتين</small>
         </div>
       </div>

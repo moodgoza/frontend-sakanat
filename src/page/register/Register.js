@@ -19,6 +19,7 @@ const Register = () => {
     password: "",
     confirmPassword: "",
     email: "",
+    phoneNumber: ""
   });
 
   let { isLoading, isSuccess, isError, message, user } = useSelector(
@@ -116,8 +117,8 @@ const Register = () => {
               />
               <input
                 onChange={onInformationChange}
-                type="password"
-                name="confirmPassword"
+                type="text"
+                name="phoneNumber"
                 placeholder="رقم الهاتف"
               />
             </div>
