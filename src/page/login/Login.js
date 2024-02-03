@@ -5,7 +5,9 @@ import { useDispatch, useSelector } from 'react-redux';
 import { toast } from 'react-toastify';
 import { Navigate, useNavigate } from 'react-router-dom';
 import axios from 'axios';
-import { login, logout } from '../../feature/user/userSlice';
+import { login, logout, reset } from '../../feature/user/userSlice';
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 const Login = () => {
   const navigate = useNavigate();
   const [information, setInformation] = useState({
@@ -17,14 +19,17 @@ const Login = () => {
     (state) => state.user
   );
   const dispatch = useDispatch();
-  useEffect(() => {
-    if (isError) {
-      toast.error(message);
-    }
-    else if (isSuccess || user) {
-      navigate("/");
-    }
-  });
+  
+    useEffect(() => {
+      if (isError) {
+        toast.error(message);
+        dispatch(reset());
+      }
+      else if (isSuccess || user) {
+        navigate("/");
+      }
+    }, [isError, isSuccess, user])
+ 
 
   const onSubmit = async() => {
     const data = dispatch(login(information));
@@ -37,6 +42,7 @@ const Login = () => {
   }
   return (
    <div>
+    <ToastContainer/>
      <img src='/mainbg.jpg' className='mainbg'/>
     <div className='overlayBlur'>
 <div className='login'>
