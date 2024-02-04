@@ -35,9 +35,12 @@
 }
 
 .profile-body {
-    padding: 2rem;
+   margin: 2rem;
+   padding: 2rem;
+   border-radius: 20px;
    display: flex;
    height: 100%;
+   background: #aa96da7c;
 }
 
 .img-message {
@@ -48,12 +51,19 @@
     border-radius: 0;
 }
 
-
 .messaging{
     display: flex;
+    flex-direction: column;
     justify-content: space-between;
     width: 100%;
+    padding: 10px;
 }
+
+.messaging button{
+    width: 100%;
+    margin: 10px;
+}
+
 .img-message{
     display: flex;
     flex-direction: column;
@@ -65,42 +75,88 @@
     display: flex;
     flex-direction: column;
     gap: 2rem;
-    height: 30%;
     width: 30%;
+    padding: 20px;
+    border-radius: 10px;
 }
-.send-message-button {
-    width: 45%;
+
+.personal-info .profileImg{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+.personal-info .profileImg img{
+    width: 250px;
+    height: 250px;
+    border-radius: 100%;
 }
 
 .send-message-button button{
     width: 100%;
+    background: green;
+    color: white;
 }
-.info {
+
+.send-message-button button:hover{
+    background: white;
+    color:green ;
+}
+.personal-info .info {
     display: flex;
+    flex-direction: column;
     width: 100%;
     align-items: center;
     justify-content: space-between;
     font-family: "Droid Arabic Kufi", serif;
-   
-
 }
-.info span {
+
+.personal-info .info h3{
+    text-transform: uppercase;
+    font-weight: 900;
+}
+
+.personal-info .info span {
     font-size: x-large;
-  
+    color: rgb(109, 109, 109);
     font-weight: bolder;
 }
 
 .offer{
-    width: 50%;
+    width: 80%;
     height:100%;
     display: flex;
     flex-direction: column;
     padding: 2rem;
-    gap: 2rem;
+    gap: .5rem;
+    background: white;
+    border-radius: 20px;
+
+}
+
+.offer .emptyMsg{
+    display: flex;
+    height: 100%;
+    width: 100%;
+    align-items: center;
+    justify-content: center;
+    color: gray;
 }
 
 h1{
     color: rgba(0, 0, 0, 0.671);
+}
+
+.profile-item-container-header{
+    display: flex;
+    width: 100%;
+    justify-content: space-around;
+    background-color: #c5b8e4c0;
+    border-radius: 99999px;
+    padding: 0.5rem;
+    gap: 1rem;
+    margin-top: 2rem;
+    margin-bottom: 1rem;
 }
 
 .profile-item-container{
@@ -109,15 +165,17 @@ h1{
     justify-content: space-around;
     border: 0.5px solid rgb(225, 220, 220);
     border-radius: 99999px;
-    padding: 0.5rem;
+    padding: 1rem;
     gap: 1rem;
+    transition: all ease-out .2s;
 }
 
 .profile-item-container:hover{
-    background-color: rgb(225, 220, 220);
+    background-color: #564381c0;
     border: 0.5px solid black;
-    color: gray;
+    color: white;
     cursor: pointer;
+    scale: 1.02;
 }
 
 .inputMessage{

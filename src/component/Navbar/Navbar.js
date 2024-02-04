@@ -24,14 +24,17 @@ const Navbar = () => {
   console.log(user);
   return (
     <nav className={user ? 'container1' : 'container1 logged'}>
-      
-      <a className="logo" href="/"><ImOffice /><h4>sakanat</h4></a>
-      { user && (<a href={`/profile/${user._id}`}><Image className="profile-img" cloudName="dim6g5ogz" publicId={user.imagePublicId}/></a> )}
-      {!user && <Tooltip title="دخول" placement="top"><a href="/login"><LoginIcon/></a></Tooltip>}
-      {!user && <Tooltip title="تسجيل" placement="top"><a href="/register"><PersonAddAltIcon/></a></Tooltip>}
-      {user && <Tooltip title="خروج" placement="top"><a className="logout" onClick={logoutHandler}><LogoutIcon/></a></Tooltip>}
-      {user && <Tooltip title="الوارد" placement="top"><a href="/chat"><MailOutlineIcon/></a></Tooltip>}
-      {user && <Tooltip title="العروض" placement="top"><a href="/item"><HomeWorkIcon/></a></Tooltip>}
+      <div className="rightSide">
+        {!user && <Tooltip title="دخول" placement="top"><a href="/login" className="smallLogo"><span>تسجيل دخول</span><LoginIcon/></a></Tooltip>}
+        {!user && <Tooltip title="تسجيل" placement="top"><a href="/register" className="smallLogo"><span>انشاء حساب</span><PersonAddAltIcon/></a></Tooltip>}
+        {user && <Tooltip title="خروج" placement="top"><a className="logout" onClick={logoutHandler}><LogoutIcon/></a></Tooltip>}
+        { user && (<a href={`/profile/${user._id}`} className="smallLogo">{user.firstName}<Image className="profile-img" cloudName="dim6g5ogz" publicId={user.imagePublicId}/></a> )}
+      </div>
+      <div className="leftSide">
+        {user && <Tooltip title="الوارد" placement="top"><a href="/chat" className="smallLogo"><span>الوارد</span><MailOutlineIcon/></a></Tooltip>}
+        {user && <Tooltip title="العروض" placement="top"><a href="/item" className="smallLogo"><span>العروض</span><HomeWorkIcon/></a></Tooltip>}
+        <a className="logo" href="/"><h4>sakanat</h4><ImOffice /></a>
+      </div>
     </nav>
   );
 };

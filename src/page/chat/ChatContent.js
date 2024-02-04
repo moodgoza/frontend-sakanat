@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
+import SendRoundedIcon from '@mui/icons-material/SendRounded';
 import Mas from "./Mas";
 import Rec from "./Rec";
 import { TextField, Tooltip } from "@mui/material";
@@ -8,6 +9,8 @@ import { createMessage } from "../../feature/chat/messageSlice";
 import { changeMessagesBySocket } from "../../feature/chat/messageSlice";
 import chatService from "../../feature/chat/chatService";
 import CircularProgress from "@mui/material/CircularProgress";
+import { Cloudinary } from "@cloudinary/url-gen";
+import { CloudinaryContext, Image, Transformation } from "cloudinary-react";
 const ChatContent = ({ socket }) => {
   const { chat, isLoading, chats } = useSelector((state) => state.chat);
   const { messages, messageIsLoading } = useSelector((state) => state.message);
@@ -59,40 +62,46 @@ const ChatContent = ({ socket }) => {
 
   return (
     <div className="chat-content">
-      <div className="chat-body">
+      {chat ? (<div className="chat-body">
         <div className="chat-head">
-          <img src="/profile.jpg" />
-          <span>
-            {chat &&
-              (chat.firstUser._id !== user._id
-                ? chat.firstUser.firstName
-                : chat.secondUser.firstName)}
-          </span>
+            {chat ? 
+            (<Image
+              className="chatImg"
+              cloudName="dim6g5ogz"
+              publicId={chat.secondUser.imagePublicId}
+            />
+            ) :(<img src="/profile.jpg" />)}
+          <h4>
+            <strong>
+              {chat &&
+                (chat.firstUser._id !== user._id
+                  ? `${chat.firstUser.firstName }`
+                  : `${chat.secondUser.firstName} ${chat.secondUser.lastName}`)}
+            </strong>
+          </h4>
         </div>
-        <hr />
-        <br />
         <div className="messages">
           {messages &&
             messages.map((m) =>
               m.sender === user._id ? <Rec message={m} /> : <Mas message={m} />
             )}
         </div>{" "}
-        <br />
-        <hr />
         <div className="chat-send">
+          <div className="button-container">
+            <button onClick={onSendHandler}> <SendRoundedIcon /> ارسال</button>
+          </div>
           <TextField
             className="textarea"
             id="outlined-multiline-static"
-            label="اكتب..."
+            label="       اكتب رسالة..."
             multiline
-            rows={5}
+            rows={1}
             onChange={onChangeHandler}
+            style={{backgroundColor: "white"}}
           />
-          <div className="button-container">
-            <button onClick={onSendHandler}>ارسال</button>
-          </div>
         </div>
-      </div>
+      </div>) : 
+      (<div className="emptyMsg"><h4>لا يوجد دردشات حديثة</h4></div>)}
     </div>
   );
 };

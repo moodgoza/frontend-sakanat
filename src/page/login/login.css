@@ -7,9 +7,11 @@
     border: 0.125rem solid #ce99ce34;
     color: white;
     border-radius: 2px;
+    padding: 2rem;
     padding-bottom: 3rem;
     align-items: center;
     margin-top: 10rem;
+    background-color: rgba(46, 37, 53, 0.568);
     box-shadow: rgba(0, 0, 0, 0.1) 0px 20px 25px -5px, rgba(0, 0, 0, 0.04) 0px 10px 10px -5px;
     height: max-content;
 }

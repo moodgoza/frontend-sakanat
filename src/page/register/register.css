@@ -8,8 +8,10 @@
     border: 0.125rem solid #ce99ce34;
     border-radius: 2px;
     align-items: center;
-    margin-top: 4rem;
+    margin-top: 15vh;
+    padding: 2rem;
     padding-bottom: 3rem;
+    background-color: rgba(46, 37, 53, 0.568);
     box-shadow: rgba(0, 0, 0, 0.1) 0px 20px 25px -5px, rgba(0, 0, 0, 0.04) 0px 10px 10px -5px;
 }
 
@@ -35,6 +37,7 @@
 }
 
 button {
+    width: 200px;
     padding: 0.5rem;
     padding-inline: 1rem;
     background-color: #28a745;
@@ -42,19 +45,17 @@ button {
     cursor: pointer;
     border-radius: 99999px;
     border: 1px solid #ce99ce34;
-    font-size: large;
-    font-family: 'Courier New', Courier, monospace;
+    font-size: 25px;
+    transition: all ease-out .2s;
 }
 
 button:hover {
     background-color: white;
     color: #28a745;
     border: 2px solid #28a745;
+    width: 220px;
 }
 
-h3{
-    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-}
 
 .register-head{
     width: 100%;
@@ -96,12 +97,8 @@ div label{
     /* Other styling properties */
   }
 
-  input[type='file'] {
-    font-family: calibri;
-   
-    padding: 10px;
-    
-    
+  input[type='file'] {  
+    padding: 10px; 
     border-bottom: 1px solid #BBB;
     text-align: center;
     color: gray;

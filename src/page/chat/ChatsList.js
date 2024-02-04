@@ -24,7 +24,7 @@ const ChatsList = ({socket}) => {
   return (
     <div className='chatlist-container'>
         <div className='chatlist-head'>
-        <strong>المحادثات</strong>
+        <strong><h3>المحادثات</h3></strong>
                 <input className='search-input' placeholder='بحث...'/>
                 
         </div>
@@ -32,7 +32,7 @@ const ChatsList = ({socket}) => {
             {chats && chats.map(c => {
               return <>
               <SingleChat socket={socket} chat={c} />
-            <hr/></>
+            </>
             })}
             
         </div>

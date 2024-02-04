@@ -16,16 +16,15 @@ const Profile = () => {
   const dispatch = useDispatch();
   const [items, setItems] = useState([]);
   const { profileUser } = useSelector((state) => state.user);
-  const {user} = useSelector(state => state.user);
+  const { user } = useSelector(state => state.user);
   const navigate = useNavigate();
   console.log(profileUser)
-  if(!user)
-  {
+  if (!user) {
     navigate('/')
   }
   useEffect(() => {
     dispatch(getUser(userId));
-    const getui = async() => {
+    const getui = async () => {
       const uu = await itemService.getUserItem(userId);
       setItems(uu);
     }
@@ -53,46 +52,54 @@ const Profile = () => {
 
       {profileUser && (
         <div className="profile-body" aria-labelledby="login">
-          
-            <div className="personal-info">
 
+          <div className="personal-info">
+
+            <div className="profileImg">
+              <Image
+                className="user-img"
+                cloudName="dim6g5ogz"
+                publicId={profileUser.imagePublicId}
+              />
+            </div>
             <div className="info">
-                  <span>الاسم : {profileUser.firstName + profileUser.lastName}</span>
-                  <span>المدينة: {profileUser.city}</span>
-                </div>
-              <div className="img-message">
-                <Image
-                  className="user-img"
-                  cloudName="dim6g5ogz"
-                  publicId={profileUser.imagePublicId}
-                />
+              <h3>{profileUser.firstName + " " + profileUser.lastName}</h3>
+              <span>{profileUser.city}</span>
+            </div>
+            <div className="img-message">
 
-                <div className="messaging">
-                  
-                    <Contact /> 
-                  
-                  <a
-                    className="send-message-button"
-                    target="blanck"
-                    href="https://wa.me/+972599364699"
-                  >
-                    <button className="send-message-button">
-                      <WhatsAppIcon /> واتس اب
-                    </button>
-                  </a>
-                </div>
-                
+              <div className="messaging">
+
+                <Contact />
+
+                <a
+                  className="send-message-button"
+                  target="blanck"
+                  href="https://wa.me/+972599364699"
+                >
+                  <button className="send-message-button">
+                    <WhatsAppIcon /> واتس اب
+                  </button>
+                </a>
               </div>
-              
+
             </div>
-          
-            <div className="offer">
-              <h1>
-                العروض
-              </h1>
-              {items.map(i => <ProfileItem item={i}/>)}
+
+          </div>
+
+          <div className="offer">
+            <h1>
+              العروض
+            </h1>
+            <div className='profile-item-container-header'>
+              <span><h6>المدينة</h6></span>
+              <span><h6>المنطقة</h6></span>
+              <span><h6>النوع</h6></span>
+              <span><h6>السعر</h6></span>           
             </div>
-      
+            {items.length == 0 ? <h3 className="emptyMsg">لا يوجد عروض حتى الان</h3> : items.map(i => <ProfileItem item={i} />)}
+          </div>
+
         </div>
       )}
     </div>

@@ -6,52 +6,71 @@
 * {
     line-height: 1.5;
 }
+img {
+    width: 10%;
+    height: 100%;
+    border-radius: 500px;
+}
 
 .chat-container {
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 100vh;
+    height: 90vh;
     padding: 2rem;
-    gap: 10%;
+    gap: 2%;
+}
+
+.chat-container .emptyMsg{
+    display: flex;
+    justify-content: center;
+    color: #a09e9e;
+    margin-top: 100px;
 }
 
 .chat-content {
-    width: 40%;
+    width: 60%;
+    background-color: #aa96da7c;
+    padding: 5px;
     border: 0.125rem solid #ce99ce34;
     border-radius: 2px;
-    padding: 2rem;
     box-shadow: rgba(0, 0, 0, 0.1) 0px 20px 25px -5px, rgba(0, 0, 0, 0.04) 0px 10px 10px -5px;
     display: flex;
     flex-direction: column;
-    height: 100%;
     gap: 1rem;
-
+    min-height: 82vh;
 }
 
 .chat-head {
-    align-items: center;
-    padding-right: 1rem;
     display: flex;
-    border-radius: 99999px;
-    background-color: white;
-    color: #AA96DA;
+    flex-direction: row-reverse;
+    align-items: center;
+    color: #3b3547;
     gap: 0.75rem;
-    margin-bottom: 1rem;
+    padding: 10px;
+    padding-left: 20px;
+    font-size: 30px;
+    letter-spacing: 2px;
+    text-transform: capitalize;
 }
+.chat-head .chatImg{
+    width: 60px;
+    height: 60px;
+}
+
 
 .chat-body {
     display: flex;
     flex-direction: column; 
-   
-    padding: 2rem;
     height: 100%;
     border-radius: 4px;
 }
 
 .messages{
+    height: 60vh;
     overflow-y: scroll;
-    height: 60%;
+    background-color: white;
+    border-radius: 20px;
 }
 
 .messages::-webkit-scrollbar {
@@ -93,7 +112,7 @@
     padding: 1rem;
     height: 30%;
     display: flex;
-    gap: 2rem;
+    gap: 1.5rem;
     margin-top: auto;
 }
 
@@ -120,12 +139,12 @@ button:hover {
 .chatlist-container {
     width: 40%;
     border: 0.125rem solid #ce99ce34;
-    border-radius: 2px;
-    
+    border-radius: 10px;
     box-shadow: rgba(0, 0, 0, 0.1) 0px 20px 25px -5px, rgba(0, 0, 0, 0.04) 0px 10px 10px -5px;
     display: flex;
     flex-direction: column;
     height: 100%;
+    background-color: #AA96DA;
  
 }
 
@@ -148,8 +167,6 @@ button:hover {
     padding: 1rem;
     display: flex;
     align-items: center;
-    border-bottom: 1px solid black;
-    background-color: #AA96DA;
   
 }
 
@@ -159,6 +176,11 @@ button:hover {
 
 .chatlist-body {
     overflow-y: auto;
+    height: 88%;
+    padding: 20px;
+    background: white;
+    border-radius: 10px;
+    z-index: 111;
 }
 
 .chatlist-body::-webkit-scrollbar {
@@ -167,12 +189,16 @@ button:hover {
 .singlechat {
     display: flex;
     align-items: center;
+    flex-direction: row-reverse;
     gap: 1rem;
-    padding: 1rem;
+    padding: 10px;
+    margin: 1px;
+    border-radius: 20px;
+    transition: all ease-in 0.2s;
 }
 
-img {
-    border-radius: 100%;
-    width: 10%;
-    height: 100%;
+.singlechat:hover{
+    cursor: pointer;
+    background: #e6ddfd;
+    scale: 1.05;
 }
