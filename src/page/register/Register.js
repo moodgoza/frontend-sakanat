@@ -26,7 +26,15 @@ const Register = () => {
     (state) => state.user
   );
   const dispatch = useDispatch();
-
+  useEffect(() => {
+    if (isError) {
+      toast.error(message);
+      dispatch(reset());
+    }
+    else if (isSuccess || user) {
+      navigate("/");
+    }
+  }, [isError, isSuccess, user])
   const onSubmit = async () => {
     const formData = new FormData();
     for(const key in information)
@@ -55,7 +63,7 @@ const Register = () => {
       register({ ...information, imagePublicId: public_id })
     );
     console.log(data);
-    navigate("/");
+    
   };
 
   const onInformationChange = (e) => {
