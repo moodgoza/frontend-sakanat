@@ -52,7 +52,7 @@ const ItemDetails = () => {
           </h3>
           </section>
           <section>
-            {item.item.user._id === user._id && <h5 onClick={onDeleteHandler} className="icon-details">حذف<DeleteIcon  /></h5> }
+            {(item.item.user._id === user._id || user.role === "admin") && <h5 onClick={onDeleteHandler} className="icon-details">حذف<DeleteIcon  /></h5> }
             {item.item.user._id === user._id && item && <EditItem item={item.item} image={item.images} />}
           </section>
         </div>

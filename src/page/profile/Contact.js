@@ -9,36 +9,41 @@ import { createMessage } from '../../feature/chat/messageSlice';
 const Contact = () => {
     const [seen, setSeen] = useState(false);
     const dispatch = useDispatch();
-    const {chat} = useSelector(state => state.chat)
+    const { chat } = useSelector(state => state.chat)
 
     const [message, setMessage] = useState('');
     const messageOnchangeHandler = (e) => {
         setMessage(e.target.value);
     }
 
-    const {profileUser, user} = useSelector(state => state.user);
+    const { profileUser, user } = useSelector(state => state.user);
     const navigate = useNavigate();
-    const oSendHandler = async() => {
-        const ret = await dispatch(createChat({firstUser: user._id, secondUser: profileUser._id}));
-        dispatch(createMessage({chat: ret.payload._id, sender: user._id, receiver: profileUser._id, value: message}));
-       navigate('/chat')
+    const oSendHandler = async () => {
+        const ret = await dispatch(createChat({ firstUser: user._id, secondUser: profileUser._id }));
+        dispatch(createMessage({ chat: ret.payload._id, sender: user._id, receiver: profileUser._id, value: message }));
+        navigate('/chat')
     }
-    
-  return (
-    <div>
-        <button onClick={() => setSeen(!seen)}><MessageIcon /> تواصل</button>
-        <Modal open={seen}>
-        <div className='modal-profile-cntainer'>
-            <label>الرسالة</label>
-        <Form.Group className="inputMessage">
-        <Form.Control as="textarea" rows={5} name="message" onChange={messageOnchangeHandler}/>
-              
-            </Form.Group>
-            <button onClick={oSendHandler}>ارسال</button>
+
+    return (
+        <div>
+            <button onClick={() => setSeen(!seen)}><MessageIcon /> تواصل</button>
+            <Modal open={seen}>
+                <div className='modal-profile-cntainer'>
+                    <label>  تواصل مع {profileUser.firstName}</label>
+                    <Form.Group className="inputMessage">
+                        <Form.Control as="textarea" rows={5} name="message" onChange={messageOnchangeHandler} placeholder='اكتب رسالتك هنا ....'/>
+
+                    </Form.Group>
+                    <div style={{display: "flex", gap: "20px"}}>
+                        <button onClick={oSendHandler}>ارسال</button>
+                        <button style={{background: "white", color: "gray"}} onClick={() => {
+                            setSeen(!seen)
+                        }}>اغلاق</button>
+                    </div>
+                </div>
+            </Modal>
         </div>
-        </Modal>
-    </div>
-  )
+    )
 }
 
 export default Contact

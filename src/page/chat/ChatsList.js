@@ -25,7 +25,7 @@ const ChatsList = ({socket}) => {
     <div className='chatlist-container'>
         <div className='chatlist-head'>
         <strong><h3>المحادثات</h3></strong>
-                <input className='search-input' placeholder='بحث...'/>
+                {/* <input className='search-input' placeholder='بحث...'/> */}
                 
         </div>
         <div className='chatlist-body'>
