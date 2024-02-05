@@ -5,20 +5,22 @@ import './gallary.css'
 import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos';
 import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
 const Gallary = ({images}) => {
-    const [index, setIndex] = useState(0);
+    let [index, setIndex] = useState(0);
   
   const onMoveHandler = (sign) => {
 
     if(sign === '-')
     {
-        if(index === 0)
-        return;
+      if(index === 0)
+      setIndex(prevState => ((prevState % images.length) + images.length - 1 ));
+      else
         setIndex(prevState => prevState - 1);
     }
     else 
     {
-        if(index === images.length - 1)
-        return;
+      if(index === images.length - 1)
+        setIndex(prevState => (images.length - (prevState % images.length) - 1) );
+      else
         setIndex(prevState => prevState + 1);
     }
     console.log(index)
@@ -34,7 +36,7 @@ const Gallary = ({images}) => {
         <div onClick={() => onMoveHandler('+')} className='forword'><ArrowForwardIosIcon/></div>
         <div onClick={() => onMoveHandler('-')} className='back'><ArrowBackIosIcon/></div>
 
-        
+        <strong>{index+1} / {images.length}</strong>
     </div>
   )
 }

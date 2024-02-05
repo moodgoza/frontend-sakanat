@@ -20,7 +20,7 @@ const ChatsList = ({socket}) => {
   }, [])
 
   
- //console.log(chats)
+ console.log(chats)
   return (
     <div className='chatlist-container'>
         <div className='chatlist-head'>

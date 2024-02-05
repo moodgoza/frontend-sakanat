@@ -15,6 +15,7 @@ export const createMessage = createAsyncThunk(
   "message/createMessage",
   async (message, thunkAPI) => {
     console.log(message.chat, message.sender, message.receiver, message.value);
+    console.log(message);
     try {
       return await chatService.createMessage(
         message.chat,
@@ -79,6 +80,7 @@ const messageSlice = createSlice({
       })
       .addCase(createMessage.fulfilled, (state, action) => {
         state.messageIsLoading = false;
+        console.log(action.payload)
         state.messages.push(action.payload);
         state.isSuccess = true;
       })

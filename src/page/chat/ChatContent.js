@@ -82,7 +82,8 @@ const ChatContent = ({ socket }) => {
         </div>
         <div className="messages">
           {messages &&
-            messages.map((m) =>
+            messages.slice()
+            .reverse().map((m) =>
               m.sender === user._id ? <Rec message={m} /> : <Mas message={m} />
             )}
         </div>{" "}

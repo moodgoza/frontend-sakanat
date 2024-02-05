@@ -29,58 +29,64 @@ const ItemDetails = () => {
   // }
 
 
-  const onDeleteHandler = async(e) => {
+  const onDeleteHandler = async (e) => {
     const data = await itemService.deleteItem(item.item._id);
     console.log(data);
     navigate('/item');
   }
   return (
     <div className="item-details">
-      {item && (
-        <div className="details">
-          <div className="details-header">
-            {item && (
-              <Image
-                className="item-user-img"
-                cloudName="dim6g5ogz"
-                publicId={item.item.user.imagePublicId}
-                onClick={onDetailsHandler}
-              />
-            )}
-            <h3 className="item-user-name" onClick={onDetailsHandler}>
-              {item && item.item.user.firstName + " " + item.item.user.lastName}
-            </h3>
-            {item.item.user._id === user._id && <DeleteIcon onClick={onDeleteHandler} className="icon-details"/>}
-            {item.item.user._id === user._id && item && <EditItem item={item.item} image={item.images}/>}
-            
-          </div>
-          <hr />
+      {item &&
+        <div className="details-header">
+          <section>
           {item && (
             <Image
-              className="details-img"
+              className="item-user-img"
               cloudName="dim6g5ogz"
-              publicId={item.item.mainImage}
+              publicId={item.item.user.imagePublicId}
+              onClick={onDetailsHandler}
             />
           )}
-
-          {item && (
-            <div className="basic-info">
-              <span>السعر: {item.item.price}</span>
-              <span>النوع: {item.item.type === "1" ? "شقة" : "بيت منفصل"}</span>
-            </div>
-          )}
-
-          {item && (
-            <div className="basic-info">
-              <span>المدينة: {item.item.city}</span>
-              <span>المنطقة: {item.item.region}</span>
-            </div>
-          )}
-
-          {item && <p className="description">{item.item.description}</p>}
+          <h3 className="item-user-name" onClick={onDetailsHandler}>
+            {item && item.item.user.firstName + " " + item.item.user.lastName}
+          </h3>
+          </section>
+          <section>
+            {item.item.user._id === user._id && <h5 onClick={onDeleteHandler} className="icon-details">حذف<DeleteIcon  /></h5> }
+            {item.item.user._id === user._id && item && <EditItem item={item.item} image={item.images} />}
+          </section>
         </div>
-      )}
-      {item && <Gallary images={item.images} />}
+      }
+      <div className="itemBody">
+        {item && (
+          <div className="details">
+            {item && (
+              <Image
+                className="details-img"
+                cloudName="dim6g5ogz"
+                publicId={item.item.mainImage}
+              />
+            )}
+
+            {item && (
+              <div className="basic-info">
+                <span>السعر: {item.item.price}</span>
+                <span>النوع: {item.item.type === "1" ? "شقة" : "بيت منفصل"}</span>
+              </div>
+            )}
+
+            {item && (
+              <div className="basic-info">
+                <span>المدينة: {item.item.city}</span>
+                <span>المنطقة: {item.item.region}</span>
+              </div>
+            )}
+
+            {item && <p className="description">{item.item.description}</p>}
+          </div>
+        )}
+        {item && <Gallary images={item.images} />}
+      </div>
     </div>
   );
 };

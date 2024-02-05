@@ -37,19 +37,18 @@ const EditItem = ({ item }) => {
         e.target.name !== "images" && e.target.name !== "mainImage"
           ? e.target.value
           : e.target.name !== "images"
-          ? e.target.files[0]
-          : Array.from(e.target.files),
+            ? e.target.files[0]
+            : Array.from(e.target.files),
     }));
     console.log(information);
   };
 
   const onSubmitHnadler = async (e) => {
-   e.preventDefault();
-   if(information.price === 0 || 
-    information.city === "" ||
-    information.region === "" ||
-    information.description === "")
-    {
+    e.preventDefault();
+    if (information.price === 0 ||
+      information.city === "" ||
+      information.region === "" ||
+      information.description === "") {
       toast.error("املا جميع الفراغات لو سمحت");
       return;
     }
@@ -64,12 +63,11 @@ const EditItem = ({ item }) => {
         "https://api.cloudinary.com/v1_1/dim6g5ogz/image/upload",
         formData
       );
-      const { public_id } = d1.data ;
+      const { public_id } = d1.data;
       information.mainImage = public_id;
     }
-    else 
-    {
-        information.mainImage = item.mainImage;
+    else {
+      information.mainImage = item.mainImage;
     }
 
     for (let i = 0; i < information.images.length; i++) {
@@ -98,39 +96,53 @@ const EditItem = ({ item }) => {
 
   return (
     <>
-      <ModeEditIcon className="icon-details" onClick={() => setSeen(!seen)} />
-      
+      <h5 className="icon-details" onClick={() => setSeen(!seen)}>
+        تعديل
+        <ModeEditIcon />
+      </h5>
       <Modal open={seen} className="model">
         <form className="createItemForm" onSubmit={onSubmitHnadler}>
           <div className="itemHeader">
             <h3>تعديل السكن </h3>
           </div>
-          <hr className="jk" />
-          <Form.Group className="inputItem">
-            <Form.Label>المدينة</Form.Label>
-            <Form.Control
-              onChange={onChangeHandler}
-              name="city"
-              value={information.city}
-            />
-          </Form.Group>
-          <Form.Group className="inputItem">
-            <Form.Label>المنطقة داخل المدينة</Form.Label>
-            <Form.Control
-              onChange={onChangeHandler}
-              name="region"
-              value={information.region}
-            />
-          </Form.Group>
-          <Form.Group className="inputItem">
-            <Form.Label>السعر</Form.Label>
-            <Form.Control
-              onChange={onChangeHandler}
-              name="price"
-              value={information.price}
-            />
-          </Form.Group>
+          <div className="inputSection">
+            <Form.Group className="inputItem">
+              <Form.Label>المدينة</Form.Label>
+              <Form.Control
+                onChange={onChangeHandler}
+                name="city"
+                value={information.city}
+              />
+            </Form.Group>
+            <Form.Group className="inputItem">
+              <Form.Label>المنطقة داخل المدينة</Form.Label>
+              <Form.Control
+                onChange={onChangeHandler}
+                name="region"
+                value={information.region}
+              />
+            </Form.Group>
+          </div>
+          <div className="inputSection">
+            <Form.Group className="inputItem">
+              <Form.Label>السعر</Form.Label>
+              <Form.Control
+                onChange={onChangeHandler}
+                name="price"
+                value={information.price}
+              />
+            </Form.Group>
 
+            <Form.Select
+              className="inputItem"
+              onChange={onChangeHandler}
+              name="type"
+              value={information.type}
+            >
+              <option value="1">شقة</option>
+              <option value="2">بيت منفصل</option>
+            </Form.Select>
+          </div>
           <Form.Group className="inputItem">
             <Form.Label>التفاصيل</Form.Label>
             <Form.Control
@@ -141,34 +153,26 @@ const EditItem = ({ item }) => {
               value={information.description}
             />
           </Form.Group>
+          <div className="inputSection">
+            <Form.Group className="inputItem">
+              <Form.Label>تغير الصورة الرئيسية</Form.Label>
+              <Form.Control
+                onChange={onChangeHandler}
+                type="file"
+                name="mainImage"
+              />
+            </Form.Group>
 
-          <Form.Select
-            className="inputItem"
-            onChange={onChangeHandler}
-            name="type"
-            value={information.type}
-          >
-            <option value="1">شقة</option>
-            <option value="2">بيت منفصل</option>
-          </Form.Select>
-          <Form.Group className="inputItem">
-            <Form.Label>تغير الصورة الرئيسية</Form.Label>
-            <Form.Control
-              onChange={onChangeHandler}
-              type="file"
-              name="mainImage"
-            />
-          </Form.Group>
-
-          <Form.Group className="inputItem">
-            <Form.Label>اضافة صور اضافية</Form.Label>
-            <Form.Control
-              onChange={onChangeHandler}
-              type="file"
-              multiple
-              name="images"
-            />
-          </Form.Group>
+            <Form.Group className="inputItem">
+              <Form.Label>اضافة صور اضافية</Form.Label>
+              <Form.Control
+                onChange={onChangeHandler}
+                type="file"
+                multiple
+                name="images"
+              />
+            </Form.Group>
+          </div>
           <div className="create-form-footer">
             <button>تعديل </button>
             <button onClick={onCloseHandler}>اغلاق </button>

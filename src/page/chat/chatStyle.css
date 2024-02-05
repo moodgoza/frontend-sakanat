@@ -67,23 +67,22 @@ img {
 }
 
 .messages{
+    display: flex;
+    flex-direction: column-reverse;
+    
     height: 60vh;
-    overflow-y: scroll;
+    overflow-y: auto;
     background-color: white;
     border-radius: 20px;
+    padding: 1rem;
 }
 
-.messages::-webkit-scrollbar {
-    display: none;
-}
 
 .masseger {
     display: flex;
-    gap: 0.5rem;
     margin-right: auto;
     width: 50%;
     flex-direction: row-reverse;
-    padding: 1rem;
 }
 
 .masseger p , .receiver p{
@@ -91,7 +90,7 @@ img {
     background-color: #AA96DA;
     color: white;
     border-radius: 6px;
-    padding: 1rem;
+    padding: 10px;
 }
 
 .masseger p {
@@ -103,7 +102,6 @@ img {
     display: flex;
     gap: 0.5rem;
     width: 50%;
-    padding: 1rem;
 }
 
 .chat-send {
