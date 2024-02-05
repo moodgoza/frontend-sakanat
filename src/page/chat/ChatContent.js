@@ -94,11 +94,11 @@ const ChatContent = ({ socket }) => {
           <TextField
             className="textarea"
             id="outlined-multiline-static"
-            label="       اكتب رسالة..."
+            placeholder="اكتب رسالة..."
             multiline
             rows={1}
             onChange={onChangeHandler}
-            style={{backgroundColor: "white"}}
+            style={{backgroundColor: "white", padding: "0", borderWidth: "0"}}
           />
         </div>
       </div>) : 

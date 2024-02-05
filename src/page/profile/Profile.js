@@ -30,7 +30,6 @@ const Profile = () => {
     }
     getui();
   }, []);
-
   const [typeOfSelected, setTypeOfSelected] = useState(1);
   return (
     <div className="profile-container">
@@ -66,24 +65,27 @@ const Profile = () => {
               <h3>{profileUser.firstName + " " + profileUser.lastName}</h3>
               <span>{profileUser.city}</span>
             </div>
-            <div className="img-message">
+            {profileUser._id != user._id &&
+              <div className="img-message">
 
-              <div className="messaging">
+                <div className="messaging">
 
-                <Contact />
+                  <Contact />
 
-                <a
-                  className="send-message-button"
-                  target="blanck"
-                  href="https://wa.me/+972599364699"
-                >
-                  <button className="send-message-button">
-                    <WhatsAppIcon /> واتس اب
-                  </button>
-                </a>
+                  <a
+                    className="send-message-button"
+                    target="blanck"
+                    href="https://wa.me/+972599364699"
+                  >
+                    <button className="send-message-button">
+                      <WhatsAppIcon /> واتس اب
+                    </button>
+                  </a>
+                </div>
+
               </div>
 
-            </div>
+            }
 
           </div>
 
@@ -95,7 +97,7 @@ const Profile = () => {
               <span><h6>المدينة</h6></span>
               <span><h6>المنطقة</h6></span>
               <span><h6>النوع</h6></span>
-              <span><h6>السعر</h6></span>           
+              <span><h6>السعر</h6></span>
             </div>
             {items.length == 0 ? <h3 className="emptyMsg">لا يوجد عروض حتى الان</h3> : items.map(i => <ProfileItem item={i} />)}
           </div>
