@@ -65,7 +65,7 @@ const Profile = () => {
               <h3>{profileUser.firstName + " " + profileUser.lastName}</h3>
               <span>{profileUser.city}</span>
             </div>
-            {profileUser._id != user._id &&
+            {user && profileUser._id != user._id &&
               <div className="img-message">
 
                 <div className="messaging">
